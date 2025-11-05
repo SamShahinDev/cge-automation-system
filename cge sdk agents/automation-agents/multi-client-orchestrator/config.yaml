@@ -1,0 +1,152 @@
+orchestrator:
+  name: "CGE Multi-Client Orchestrator"
+  version: "1.0.0"
+  max_concurrent_tasks: 5
+  task_timeout_minutes: 60
+  auto_save_interval_seconds: 30
+
+clients:
+  dirt-free-crm:
+    name: "Dirt Free Carpet Cleaning CRM"
+    project_path: "dirt free carpet/dirt-free-crm"
+    status: active
+    priority: high
+    subscription_tier: premium
+    monthly_retainer: 500
+    contact_email: client@dirtfreecarpet.com
+    github_repo: crownedgladiator/dirt-free-crm
+    tech_stack:
+      - Next.js 15
+      - TypeScript
+      - Supabase
+      - Tailwind CSS
+    features:
+      - customer_management
+      - job_scheduling
+      - invoicing
+      - sms_integration
+      - email_automation
+      - vehicle_tracking
+      - analytics
+    context:
+      business_domain: "Carpet cleaning service management"
+      primary_users: "Office staff, technicians, managers"
+      key_workflows:
+        - "Customer booking and scheduling"
+        - "Job assignment to technicians"
+        - "Invoice generation and payment"
+        - "SMS/Email communications"
+
+  # Add more clients as you onboard them
+  # example-client:
+  #   name: "Example Client"
+  #   project_path: "example/project"
+  #   status: active
+  #   priority: medium
+  #   subscription_tier: standard
+  #   monthly_retainer: 300
+
+agent_specializations:
+  code_review:
+    path: "../code-review-agent/agent.py"
+    capabilities:
+      - "Pre-demo quality checks"
+      - "Code analysis"
+      - "Security scanning"
+      - "Auto-fixing issues"
+    triggers:
+      - before_demo
+      - on_pr_created
+      - manual
+
+  monthly_value:
+    path: "../monthly-value-agent/agent.py"
+    capabilities:
+      - "ROI calculation"
+      - "Performance analysis"
+      - "Usage tracking"
+      - "Report generation"
+    triggers:
+      - monthly_schedule
+      - manual
+
+  architect:
+    agent_file: "../../.claude/agents/project-architect.md"
+    capabilities:
+      - "System design"
+      - "Architecture decisions"
+      - "Technical planning"
+    triggers:
+      - new_feature
+      - refactoring
+      - manual
+
+task_priorities:
+  critical: 1
+  high: 2
+  medium: 3
+  low: 4
+
+task_types:
+  - bug_fix
+  - feature_development
+  - code_review
+  - optimization
+  - security_audit
+  - documentation
+  - client_meeting
+  - monthly_report
+
+scheduling:
+  work_hours:
+    start: "09:00"
+    end: "17:00"
+    timezone: "America/Chicago"
+
+  recurring_tasks:
+    - name: "Monthly Value Report"
+      type: monthly_report
+      schedule: "0 9 1 * *"  # 9am on 1st of month
+      agent: monthly_value
+      for_all_clients: true
+
+    - name: "Weekly Code Review"
+      type: code_review
+      schedule: "0 10 * * 5"  # 10am every Friday
+      agent: code_review
+      for_all_clients: true
+
+notifications:
+  slack:
+    enabled: true
+    channels:
+      general: "#general"
+      alerts: "#alerts"
+      clients: "#client-updates"
+
+  email:
+    enabled: true
+    send_daily_summary: true
+    send_task_reminders: true
+
+integrations:
+  toggl:
+    enabled: false
+    auto_track_time: true
+    default_project_mapping: true
+
+  stripe:
+    enabled: false
+    auto_invoice: false
+
+  github:
+    enabled: true
+    auto_create_issues: true
+    auto_assign_prs: true
+
+dashboard:
+  port: 5000
+  refresh_interval_seconds: 10
+  theme: "dark"
+  show_analytics: true
+  show_time_tracking: true

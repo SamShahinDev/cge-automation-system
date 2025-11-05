@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(npx shadcn@latest init:*)",
+      "Read(//Users/royaltyvixion/Documents/dirt free carpet/dirt-free-crm/**)",
+      "Bash(npm run build:*)",
+      "Bash(ls:*)",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)",
+      "Bash(chmod:*)",
+      "Bash(./test-setup.sh:*)",
+      "Bash(./test-watchdog.sh:*)",
+      "Bash(python3:*)",
+      "Bash(cat:*)",
+      "Bash(claude --version)",
+      "Bash(./test-monitoring.sh:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(git remote remove:*)",
+      "Bash(git remote add:*)",
+      "Bash(git config:*)",
+      "Bash(killall:*)",
+      "Bash(git branch:*)",
+      "Bash(git commit:*)",
+      "Bash(gh repo sync:*)",
+      "Bash(./build-website.sh:*)",
+      "Bash(find:*)",
+      "Bash(git init:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

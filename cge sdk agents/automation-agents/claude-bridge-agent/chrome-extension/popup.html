@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Claude Bridge Settings</title>
+  <style>
+    body {
+      width: 350px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 18px;
+      margin: 0 0 16px 0;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .setting {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #94a3b8;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px 12px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #f1f5f9;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px 12px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #f1f5f9;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .status {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: #1e293b;
+      border-radius: 6px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .status.success {
+      color: #10b981;
+      border: 1px solid #10b981;
+    }
+
+    .status.error {
+      color: #ef4444;
+      border: 1px solid #ef4444;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌉 Claude Bridge</h1>
+
+  <div class="setting">
+    <label>Bridge API URL</label>
+    <input type="text" id="apiUrl" value="http://localhost:8080" placeholder="http://localhost:8080">
+  </div>
+
+  <div class="setting">
+    <label>Default Project</label>
+    <select id="project">
+      <option value="dirt-free-crm">Dirt Free CRM</option>
+      <option value="custom">Custom Path...</option>
+    </select>
+  </div>
+
+  <div class="setting" id="customPathContainer" style="display: none;">
+    <label>Project Path</label>
+    <input type="text" id="projectPath" placeholder="/path/to/project">
+  </div>
+
+  <div class="setting">
+    <div class="checkbox">
+      <input type="checkbox" id="autoOpenBridge">
+      <label for="autoOpenBridge" style="margin: 0;">Auto-open Bridge after sending</label>
+    </div>
+  </div>
+
+  <button id="saveBtn">Save Settings</button>
+  <button id="testBtn" style="background: #1e293b; border: 1px solid #334155; margin-top: 8px;">Test Connection</button>
+
+  <div id="status" class="status" style="display: none;"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

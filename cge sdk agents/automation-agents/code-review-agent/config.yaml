@@ -1,0 +1,79 @@
+project_types:
+  crm:
+    name: "CRM Application"
+    file_patterns:
+      - "**/*.tsx"
+      - "**/*.ts"
+      - "**/*.jsx"
+      - "**/*.js"
+    exclude_patterns:
+      - "**/node_modules/**"
+      - "**/.next/**"
+      - "**/dist/**"
+      - "**/build/**"
+    checks:
+      - console_logs
+      - error_handling
+      - loading_states
+      - placeholder_data
+      - mobile_responsive
+      - typescript_strict
+      - auth_checks
+      - database_security
+    critical_paths:
+      - "src/app/(dashboard)/**"
+      - "src/app/api/**"
+      - "src/lib/actions/**"
+
+  portal:
+    name: "Customer Portal"
+    file_patterns:
+      - "**/*.tsx"
+      - "**/*.ts"
+      - "**/*.jsx"
+      - "**/*.js"
+    exclude_patterns:
+      - "**/node_modules/**"
+      - "**/.next/**"
+    checks:
+      - console_logs
+      - error_handling
+      - loading_states
+      - placeholder_data
+      - mobile_responsive
+      - accessibility
+      - seo_basics
+    critical_paths:
+      - "src/app/**"
+      - "src/components/**"
+
+  website:
+    name: "Marketing Website"
+    file_patterns:
+      - "**/*.tsx"
+      - "**/*.ts"
+      - "**/*.jsx"
+      - "**/*.js"
+    exclude_patterns:
+      - "**/node_modules/**"
+      - "**/.next/**"
+    checks:
+      - console_logs
+      - loading_states
+      - placeholder_data
+      - mobile_responsive
+      - accessibility
+      - seo_optimization
+      - performance
+    critical_paths:
+      - "src/app/**"
+      - "src/components/**"
+
+auto_fix_enabled: true
+auto_fix_checks:
+  - console_logs
+  - trailing_whitespace
+  - import_sorting
+
+report_format: "markdown"
+output_file: "code-review-report.md"

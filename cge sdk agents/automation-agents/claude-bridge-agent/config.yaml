@@ -1,0 +1,184 @@
+# Claude Bridge Agent - Enhanced Configuration
+
+projects:
+  dirt-free-crm:
+    path: /Users/royaltyvixion/Documents/cge software/dirt-free-crm
+    github_url: https://github.com/yourusername/dirtfree-crm
+    context_files:
+      - ARCHITECTURE.md
+      - DATABASE_SCHEMA.md
+      - docs/API.md
+      - README.md
+    tech_stack:
+      frontend:
+        - Next.js 15
+        - TypeScript
+        - Tailwind CSS
+        - Shadcn UI
+      backend:
+        - Supabase
+        - PostgreSQL
+        - Edge Functions
+      integrations:
+        - Twilio
+        - Resend
+        - Stripe
+    patterns:
+      component_path: "components/{feature}/{ComponentName}.tsx"
+      api_path: "app/api/{feature}/route.ts"
+      page_path: "app/(dashboard)/{feature}/page.tsx"
+      server_action_path: "app/actions/{feature}.ts"
+      type_path: "types/{feature}.ts"
+      lib_path: "lib/{feature}.ts"
+    common_imports: |
+      import { createClient } from '@/lib/supabase/server'
+      import { Button } from '@/components/ui/button'
+      import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+      import { Input } from '@/components/ui/input'
+      import { Label } from '@/components/ui/label'
+    style_guide:
+      - Use "use server" for Server Actions
+      - Always add loading states with Suspense
+      - Use TypeScript strict mode
+      - Follow React Server Components patterns
+      - Implement proper error boundaries
+      - Add form validation with zod
+
+  cge-website:
+    name: "CGE Website"
+    path: /Users/royaltyvixion/Documents/cge software/website/custom-software-site
+    tech_stack:
+      - Next.js 14
+      - TypeScript
+      - Tailwind CSS
+      - shadcn/ui
+    patterns_path: .claude/patterns
+    context_files:
+      - src/app/globals.css
+      - src/lib/utils.ts
+      - tailwind.config.ts
+    auto_answer_questions:
+      "Server or client component?": "Use client components for interactivity"
+      "Which UI library?": "Use shadcn/ui components"
+      "Import from where?": "@/components/ui"
+      "Mobile first?": "Yes, always mobile-first"
+      "Animation duration?": "200ms for all transitions"
+      "Color scheme?": "Use existing design system colors"
+
+server:
+  host: 0.0.0.0
+  port: 8080
+
+anthropic:
+  api_key: ${ANTHROPIC_API_KEY}
+  enhancement_model: claude-sonnet-4-20250514
+  temperature: 0.3
+  max_tokens: 4096
+
+enhancement:
+  system_prompt: |
+    You are enhancing planning documents into detailed implementation prompts for Claude Code.
+
+    Always include in your enhanced prompts:
+    1. Specific file paths following the project's patterns
+    2. Required imports from common_imports
+    3. Error handling with try/catch blocks
+    4. Loading states with Suspense/skeleton components
+    5. Complete TypeScript types and interfaces
+    6. Test files alongside implementations (*.test.ts or *.spec.ts)
+    7. Accessibility attributes (aria-labels, roles)
+    8. Mobile-responsive design considerations
+
+    Follow the project's tech stack and existing patterns.
+    Reference similar existing code when available.
+    Suggest related files that may need updates.
+
+  context_injection:
+    max_context_files: 10
+    max_file_size_kb: 100
+    include_recent_commits: 5
+    similarity_threshold: 0.7
+
+review:
+  auto_approve_patterns:
+    - "add.*field.*database"
+    - "create.*type.*interface"
+    - "update.*documentation"
+    - "add.*comment"
+    - "fix.*typo"
+    - "format.*code"
+
+  require_review_patterns:
+    - "delete"
+    - "remove"
+    - "drop"
+    - "payment"
+    - "stripe"
+    - "authentication"
+    - "auth"
+    - "security"
+    - "password"
+    - "token"
+    - "api.*key"
+    - "secret"
+    - "migration"
+    - "schema.*change"
+
+  complexity_thresholds:
+    low_max_files: 3
+    medium_max_files: 10
+    high_min_files: 11
+
+execution:
+  claude_code_timeout: 1800  # 30 minutes
+  claude_code_path: claude-code
+
+  # Auto-answer common questions from Claude Code
+  auto_answer_common_questions:
+    "Should this be a server or client component?": "Server component for data fetching, client component for interactivity (useState, onClick, etc.)"
+    "Which existing pattern should I follow?": "Check similar features in the codebase and follow their structure"
+    "Should I add tests?": "Yes, create a .test.ts file alongside the implementation"
+    "What styling approach?": "Use Tailwind CSS utility classes, follow existing component patterns"
+    "Do you want error handling?": "Yes, add try/catch with proper error messages and user feedback"
+
+  pause_on_questions: true
+  log_all_output: true
+
+patterns:
+  library_path: .claude/patterns
+  enabled_patterns:
+    - crud-pattern
+    - form-pattern
+    - api-pattern
+    - auth-pattern
+    - dashboard-pattern
+    - data-table-pattern
+
+learning:
+  enabled: true
+  storage_path: data/learning
+  track_enhancements: true
+  track_outcomes: true
+  similarity_threshold: 0.75
+  max_history: 1000
+
+pre_flight_checks:
+  verify_project_path: true
+  check_git_status: true
+  warn_uncommitted_changes: true
+  validate_claude_code: true
+  test_api_key: true
+  check_context_files: true
+  validate_patterns: true
+
+notifications:
+  console: true
+  desktop: false
+  webhook_url: null
+
+logging:
+  level: INFO
+  format: json
+  file: logs/bridge.log
+  rotation: daily
+  retention_days: 30

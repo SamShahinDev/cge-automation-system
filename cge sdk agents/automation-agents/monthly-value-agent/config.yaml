@@ -1,0 +1,62 @@
+clients:
+  dirt-free-crm:
+    name: "Dirt Free Carpet Cleaning CRM"
+    supabase_url: "${CLIENT_SUPABASE_URL}"
+    supabase_key: "${CLIENT_SUPABASE_KEY}"
+    github_repo: "${CLIENT_GITHUB_REPO}"
+    subscription_tier: "premium"
+    monthly_fee: 500
+    launch_date: "2024-01-15"
+    features:
+      - customer_management
+      - job_scheduling
+      - invoicing
+      - sms_integration
+      - email_automation
+      - vehicle_tracking
+      - analytics
+
+analysis_settings:
+  performance:
+    slow_query_threshold_ms: 500
+    api_response_threshold_ms: 1000
+    bundle_size_threshold_kb: 500
+
+  security:
+    check_dependencies: true
+    check_env_vars: true
+    check_api_endpoints: true
+    check_rls_policies: true
+
+  usage:
+    track_active_users: true
+    track_feature_usage: true
+    track_api_calls: true
+    track_errors: true
+
+  optimization:
+    auto_create_indexes: false
+    auto_update_deps: false
+    suggest_features: true
+    suggest_optimizations: true
+
+report_settings:
+  format: "pdf"
+  include_charts: true
+  include_recommendations: true
+  include_roi_calculation: true
+  include_changelog: true
+  brand_color: "#2563eb"
+  logo_path: "templates/logo.png"
+
+github_settings:
+  create_prs: true
+  pr_labels:
+    - "monthly-optimization"
+    - "automated"
+  pr_reviewers: []
+
+notification_settings:
+  email_enabled: false
+  slack_enabled: false
+  slack_webhook_url: ""

@@ -1,0 +1,24 @@
+{
+  "name": "cge-discord-bot",
+  "version": "1.0.0",
+  "description": "CGE Development Automation Discord Bot",
+  "main": "dist/index.js",
+  "scripts": {
+    "setup": "node setup.js",
+    "dev": "node launcher.js",
+    "build": "tsc",
+    "start": "node launcher.js"
+  },
+  "keywords": ["discord", "bot", "automation", "cge"],
+  "author": "CGE Development",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "14.14.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
